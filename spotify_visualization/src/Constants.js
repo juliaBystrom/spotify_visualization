@@ -1,0 +1,1 @@
+export const SPOTIFY_LOGIN_URL = 'http://localhost:8888/spotify_login';
