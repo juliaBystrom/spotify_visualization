@@ -7,17 +7,17 @@ let app = express();
 
 let redirect_uri = process.env.REDIRECT_URI || "http://localhost:8888/callback";
 
-let queryData = {
-  client_id: process.env.CLIENT_ID,
-  response_type: "code",
-  state: "dummyState",
-  redirect_uri: redirect_uri,
-  scope: "user-read-private user-read-email",
-};
-
 app.get("/spotify_login", function (req, res) {
+  console.log("Requesting spotify login");
   res.redirect(
-    "https://accounts.spotify.com/authorize?" + querystring.stringify(queryData)
+    "https://accounts.spotify.com/authorize?" +
+      querystring.stringify({
+        client_id: process.env.CLIENT_ID,
+        response_type: "code",
+        state: "dummyState",
+        redirect_uri: redirect_uri,
+        scope: "user-read-private user-read-email user-top-read user-library-read",
+      })
   );
 });
 
